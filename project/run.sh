@@ -1,0 +1,15 @@
+#! /bin/bash
+
+cd terraform
+terraform init
+
+terraform apply --auto-approve
+chmod +x generate_inventory.sh
+
+./generate_inventory.sh
+
+cd ../ansible
+ansible-playbook -i inventory.ini playbook.yml
+
+# cd ../terraform
+# terraform destroy --auto-approve
